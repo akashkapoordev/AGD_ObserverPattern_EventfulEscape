@@ -23,6 +23,7 @@ public class GameUIView : MonoBehaviour
     {
         EventService.Instance.OnKeyPickedUp.AddListener(OnKeyEquipped);
         EventService.Instance.OnLightsOffByGhostEvent.AddListener(SetRedVignette);
+        EventService.Instance.OnRatRush.AddListener(SetRedVignette);
         EventService.Instance.PlayerEscapedEvent.AddListener(OnPlayerEscaped);
         EventService.Instance.PlayerDeathEvent.AddListener(SetRedVignette);
         EventService.Instance.PlayerDeathEvent.AddListener(OnPlayerDeath);
@@ -38,6 +39,7 @@ public class GameUIView : MonoBehaviour
         EventService.Instance.PlayerEscapedEvent.RemoveListener(OnPlayerEscaped);
         EventService.Instance.PlayerDeathEvent.RemoveListener(SetRedVignette);
         EventService.Instance.PlayerDeathEvent.RemoveListener(OnPlayerDeath);
+        EventService.Instance.OnRatRush.RemoveListener(SetRedVignette);
     }
 
     public void UpdateInsanity(float playerSanity) => insanityImage.rectTransform.localScale = new Vector3(1, playerSanity, 1);
@@ -63,5 +65,7 @@ public class GameUIView : MonoBehaviour
         gameEndText.SetText("You Escaped");
         gameEndPanel.SetActive(true);
     }
+
+
 }
 
